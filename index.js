@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// ⚠️ (Suggestion) move this middleware above routes for safety — moved up from below
+// (Suggestion) move this middleware above routes for safety — moved up from below
 // Previous order: after routes
 // New order: before routes
 app.use(express.urlencoded({ extended: "true" }));
