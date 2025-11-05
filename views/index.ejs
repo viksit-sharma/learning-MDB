@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Lite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>All Chats</h2>
+    <form class="newf" method="get" action="/chats/new">
+        <button class="new">New Chat</button>
+    </form>
+    <% for(let chat of chats) { %>
+        <div>
+        <p class="sent-by"><i><%= chat.from %></i></p>
+        <div>
+            <p><%= chat.msg %></p>
+        </div>
+        <form class="editf" method="get" action="/chats/<%=chat._id%>/edit">
+    <button class="edit">Edit</button>
+    </form>
+    <form class="editf" method="post" action="/chats/<%=chat._id%>/delete">
+    <button class="delete">Delete</button>
+    </form>
+    <form class="editf" method="get" action="/chats/<%=chat._id%>">
+    <button class="delete">show</button>
+    </form>
+    <% if(chat.createdAt<chat.updatedAt){ %>
+        <hr><p class="createdAt1"><%=chat.updatedAt.toString().split(" ")[4]%></p>
+    <p class="createdAt2"><%=chat.updatedAt.toString().split(" ").slice(0,4).join(" ")%></p>
+    <%}else {%>
+        <hr><p class="createdAt1"><%=chat.createdAt.toString().split(" ")[4]%></p>
+    <p class="createdAt2"><%=chat.createdAt.toString().split(" ").slice(0,4).join(" ")%></p>
+    <!-- <p class="sent-to">Sent to : <i><%= chat.to %></i></p> -->
+    <%}%>
+    </div>
+    <%}%>
+    
+    
+</body>
+</html>

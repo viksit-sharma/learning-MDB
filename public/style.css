@@ -1,0 +1,163 @@
+/* General Page Styling */
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ece5dd; /* WhatsApp chat background */
+  margin: 0;
+  padding: 0 10px; /* Add some horizontal padding */
+}
+
+/* WhatsApp Header */
+h2 {
+  background-color: #075e54;
+  color: white;
+  text-align: center;
+  margin: 0 -10px; /* Make header span full width */
+  padding: 15px 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: sticky; /* Make header stick to top */
+  top: 0;
+  z-index: 10;
+}
+
+/* "New Chat" Button Form */
+.newf {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.new {
+  background-color: #25d366; /* Brighter WhatsApp green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.new:hover {
+  background-color: #128c7e;
+}
+
+/* --- Chat Bubble Styling --- */
+
+/* This targets the main <div> container for EACH chat */
+/* We use .newf ~ div to only select chat divs AFTER the .newf form */
+.newf ~ div {
+  max-width: 70%; /* Bubbles shouldn't be full width */
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  word-wrap: break-word; /* Ensure long messages wrap */
+}
+
+/* "Sent By" Label */
+.sent-by {
+  margin: 0 0 5px 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Message Text (inside the inner div) */
+.newf ~ div > div {
+  margin: 5px 0;
+}
+.newf ~ div > div p {
+  margin: 0;
+  font-size: 15px;
+  color: #303030;
+}
+
+/* Edit Button Form */
+.editf {
+  text-align: right;
+  margin-top: 5px;
+}
+
+.edit {
+  background: none;
+  border: 1px solid #075e54;
+  color: #075e54;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: all 0.3s;
+}
+.edit:hover {
+  background-color: #075e54;
+  color: white;
+}
+.delete {
+  background: none;
+  border: 1px solid #c21212;
+  color: #c21212;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: all 0.3s;
+}
+.delete:hover {
+  background-color: #c21212;
+  color: white;
+}
+
+/* Timestamp Styling */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #0000001a; /* Faint line */
+  margin: 8px 0;
+}
+
+.createdAt1,
+.createdAt2 {
+  margin: 0;
+  font-size: 11px;
+  color: #555;
+}
+
+.createdAt1 { /* Time */
+  margin-top: 5px;
+}
+
+/* --- The Magic: Alternating Chat Alignment --- */
+
+/* "Sent" Chats (Odd-numbered divs after .newf) */
+.newf ~ div:nth-of-type(odd) {
+  background-color: #dcf8c6; /* Light green "sent" bubble */
+  margin-left: auto; /* Aligns the WHOLE BUBBLE to the right */
+  margin-right: 0;
+}
+
+/* "Received" Chats (Even-numbered divs after .newf) */
+.newf ~ div:nth-of-type(even) {
+  background-color: #ffffff; /* White "received" bubble */
+  margin-left: 0;
+  margin-right: auto; /* Aligns the WHOLE BUBBLE to the left */
+}
+
+/* --- Alignment INSIDE the bubbles --- */
+
+/* For "Sent" chats, align timestamps to the right */
+.newf ~ div:nth-of-type(odd) .createdAt1,
+.newf ~ div:nth-of-type(odd) .createdAt2 {
+  text-align: right;
+}
+
+/* For "Sent" chats, give the sender a unique color */
+.newf ~ div:nth-of-type(odd) .sent-by {
+  color: #075e54; /* Dark green */
+}
+
+/* For "Received" chats, timestamps are left (default) */
+/* For "Received" chats, give the sender a different color */
+.newf ~ div:nth-of-type(even) .sent-by {
+  color: #3498db; /* A nice blue */
+}

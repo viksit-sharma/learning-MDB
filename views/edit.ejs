@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Chat</title>
+    <style>
+        /* Global styles for form pages */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ece5dd; /* WhatsApp chat background */
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        /* Header for "Edit Chat" page (matches main page) */
+        h2 {
+            background-color: #075e54;
+            color: white;
+            text-align: center;
+            margin: 0 -10px 20px -10px; /* Span full width */
+            padding: 15px 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Informational text on "Edit Chat" page */
+        p {
+            text-align: center;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* The main form "card" */
+        .form-container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for all text inputs and textareas */
+        .form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 15px;
+            height: 120px;
+            resize: vertical; /* Allow vertical resize, not horizontal */
+        }
+
+        /* Primary "Create" or "Edit" button */
+        .btn-primary {
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #128c7e; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit your chat : <%=chat._id%></h2>
+    <!-- Added <b> tags for emphasis -->
+    <p>This chat was sent by <b><%=chat.from%></b> to <b><%=chat.to%></b></p>
+    
+    <!-- Added .form-container class -->
+    <form class="form-container" method="post" action="/chats/<%=chat._id%>">
+        <textarea name="msg" ><%=chat.msg%></textarea>
+        <!-- Added .btn-primary class -->
+        <button class="btn-primary">Save Edit</button>
+    </form>
+</body>
+</html>
